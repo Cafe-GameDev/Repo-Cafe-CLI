@@ -10,9 +10,9 @@ Ele é, em essência, o Gemini para desenvolvedores Godot, e o melhor de tudo: *
 
 O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimento:
 
--   `repo-Café`:
+-   `repo-cafe`:
     -   **Função:** Inicia a sessão de chat com o assistente.
-    -   **Uso:** `repo-Café`
+    -   **Uso:** `repo-cafe`
 
 -   `Café-new [template] <nome-do-projeto>`:
     -   **Função:** Te serve um novo "Café Quentinho" (um projeto Godot com base nos templates do Café).
@@ -23,9 +23,9 @@ O Repo Café CLI vem com um conjunto de comandos para agilizar seu desenvolvimen
         -   `Café-new platformer meu-jogo-plataforma`
         -   `Café-new topdown meu-jogo-topdown`
 
--   `repo-Café-update`:
-    -   **Função:** Atualiza a ferramenta `repo-Café` para a versão mais recente. O processo de atualização também garante que sua cópia local do Repo-Café esteja sincronizada com a versão da ferramenta.
-    -   **Uso:** `repo-Café-update`
+-   `repo-cafe-update`:
+    -   **Função:** Atualiza a ferramenta `repo-cafe` para a versão mais recente. O processo de atualização também garante que sua cópia local do Repo-Café esteja sincronizada com a versão da ferramenta.
+    -   **Uso:** `repo-cafe-update`
 
 -   `repo-update`:
     -   **Função:** Atualiza especificamente o repositório de conhecimento (Repo-Café), baixando as últimas atualizações dos manuais. É ideal para obter o conteúdo mais recente, que pode ser atualizado com mais frequência do que a ferramenta em si.
@@ -46,7 +46,7 @@ Para instalar o Repo Café CLI, você precisa ter o [Node.js](https://nodejs.org
 Com o Node.js pronto, abra seu terminal e execute o seguinte comando:
 
 ```bash
-npm install -g repo-Café
+npm install -g repo-cafe
 ```
 
 E pronto! Seu café está coado e pronto para ser saboreado, seja um espresso rápido ou um coado demorado.
@@ -56,7 +56,7 @@ E pronto! Seu café está coado e pronto para ser saboreado, seja um espresso r�
 Após a instalação, simplesmente abra um novo terminal e execute:
 
 ```bash
-repo-Café
+repo-cafe
 ```
 
 É só dar um gole e começar a codificar, sentindo a Caféína do desenvolvimento fluir!
