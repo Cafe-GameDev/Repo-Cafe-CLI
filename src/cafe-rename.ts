@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
-const HELP_TEXT = `
+const HELP_TEXT: string = `
 ☕ Uso: cafe-rename --source <caminho>
 
    Dê uma "mexida" nos nomes dos seus arquivos e pastas! Este comando normaliza
@@ -20,52 +20,54 @@ Opções:
   --help              Mostra este "cardápio" de ajuda.
 `;
 
-function normalizeName(name) {
+function normalizeName(name: string): string {
     const normalized = name
-        .normalize("NFD") // Decompõe caracteres acentuados (e.g., 'á' -> 'a' + '´')
-        .replace(/[\u0300-\u036f]/g, "") // Remove os diacríticos (acentos)
-        .replace(/ /g, '_') // Substitui apenas espaços por underscores
-        .replace(/[^a-zA-Z0-9_.-]/g, ''); // Remove caracteres não permitidos, preservando maiúsculas, minúsculas, números e hífens
+        .normalize("NFD")
+        .replace(/[\n\u0300-\u036f]/g, "")
+        .replace(/ /g, '_')
+        .replace(/[^a-zA-Z0-9_.-]/g, '');
 
     return normalized;
 }
 
-function collectPaths(directory, allFiles = [], allDirs = []) {
+interface CollectedPaths {
+    allFiles: string[];
+    allDirs: string[];
+}
+
+function collectPaths(directory: string, allFiles: string[] = [], allDirs: string[] = []): CollectedPaths {
     const entries = fs.readdirSync(directory, { withFileTypes: true });
 
     for (const entry of entries) {
         const fullPath = path.join(directory, entry.name);
 
-        // Ignora arquivos e pastas que começam com ponto ou são node_modules
         if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name.toLowerCase() === 'addons') {
             console.log(`Ignorando: ${fullPath}`);
             continue;
         }
 
         if (entry.isDirectory()) {
-            // Adiciona o diretório à lista e continua a recursão
             allDirs.push(fullPath);
             collectPaths(fullPath, allFiles, allDirs);
         } else {
-            // Adiciona o arquivo à lista
             allFiles.push(fullPath);
         }
     }
     return { allFiles, allDirs };
 }
 
-function renamePath(oldPath) {
-    const directory = path.dirname(oldPath);
-    const oldName = path.basename(oldPath);
-    const newName = normalizeName(oldName);
-    const newPath = path.join(directory, newName);
+function renamePath(oldPath: string): string {
+    const directory: string = path.dirname(oldPath);
+    const oldName: string = path.basename(oldPath);
+    const newName: string = normalizeName(oldName);
+    const newPath: string = path.join(directory, newName);
 
     if (oldPath !== newPath) {
         try {
             fs.renameSync(oldPath, newPath);
             console.log(`Renomeado: ${oldName} -> ${newName}`);
             return newPath;
-        } catch (err) {
+        } catch (err: any) {
             console.error(`Erro ao renomear ${oldPath}:`, err);
             return oldPath;
         }
@@ -73,17 +75,16 @@ function renamePath(oldPath) {
     return oldPath;
 }
 
-
-function main() {
-    const args = process.argv.slice(2);
+function main(): void {
+    const args: string[] = process.argv.slice(2);
 
     if (args.includes('--help')) {
         console.log(HELP_TEXT);
         return;
     }
 
-    let sourceDir = process.cwd();
-    const sourceIndex = args.indexOf('--source');
+    let sourceDir: string = process.cwd();
+    const sourceIndex: number = args.indexOf('--source');
     if (sourceIndex !== -1 && args[sourceIndex + 1]) {
         sourceDir = path.resolve(args[sourceIndex + 1]);
     }
@@ -95,18 +96,15 @@ function main() {
 
     console.log(`Iniciando normalização em: ${sourceDir}`);
 
-    // 1. Coletar todos os caminhos
     let { allFiles, allDirs } = collectPaths(sourceDir);
 
-    // 2. Renomear todos os arquivos primeiro
     console.log('\n--- Renomeando arquivos ---');
     allFiles.forEach(filePath => {
         renamePath(filePath);
     });
 
-    // 3. Renomear todos os diretórios, do mais profundo para o mais raso
     console.log('\n--- Renomeando diretórios ---');
-    allDirs.sort((a, b) => b.length - a.length); // Ordena por profundidade
+    allDirs.sort((a, b) => b.length - a.length);
     allDirs.forEach(dirPath => {
         renamePath(dirPath);
     });

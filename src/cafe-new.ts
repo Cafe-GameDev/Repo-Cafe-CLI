@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+import { execSync } from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
 
-const REPO_URL = 'https://github.com/Cafe-GameDev/Cafe-Quentinho.git';
-const DEFAULT_BRANCH = 'master';
+const REPO_URL: string = 'https://github.com/Cafe-GameDev/Cafe-Quentinho.git';
+const DEFAULT_BRANCH: string = 'master';
 
-function printUsage() {
+function printUsage(): void {
     console.log(`
 ☕ Uso: cafe-new [blend] <nome-do-projeto>
 
@@ -29,7 +29,7 @@ Cardápio de Exemplos:
     process.exit(0);
 }
 
-function runCommand(command, cwd) {
+function runCommand(command: string, cwd?: string): void {
     try {
         execSync(command, { stdio: 'inherit', cwd });
     } catch (error) {
@@ -39,18 +39,18 @@ Falha ao executar o comando: ${command}`);
     }
 }
 
-function renameProject(projectPath, newName) {
+function renameProject(projectPath: string, newName: string): void {
     const godotFilePath = path.join(projectPath, 'project.godot');
     if (!fs.existsSync(godotFilePath)) {
         console.warn(`Aviso: Não foi possível encontrar ${godotFilePath} para renomear.`);
         return;
     }
-    let content = fs.readFileSync(godotFilePath, 'utf8');
+    let content: string = fs.readFileSync(godotFilePath, 'utf8');
     content = content.replace(/config\/name=".*"/, `config/name="${newName}"`);
     fs.writeFileSync(godotFilePath, content, 'utf8');
 }
 
-async function setupProject(projectPath, sparsePaths) {
+async function setupProject(projectPath: string, sparsePaths: string[]): Promise<void> {
     console.log(`Inicializando o repositório e configurando o sparse checkout para: ${sparsePaths.join(', ')}`);
     runCommand('git init', projectPath);
     runCommand(`git remote add origin ${REPO_URL}`, projectPath);
@@ -64,17 +64,16 @@ Baixando os arquivos do template (branch: ${DEFAULT_BRANCH})...
     runCommand(`git pull origin ${DEFAULT_BRANCH}`, projectPath);
 }
 
-async function main() {
-    const args = process.argv.slice(2);
-    let template;
-    let projectName;
+async function main(): Promise<void> {
+    const args: string[] = process.argv.slice(2);
+    let template: string;
+    let projectName: string;
 
     if (args.includes('--help') || args.includes('-h')) {
         printUsage();
     }
 
-    // Mapeia templates para nomes de pastas
-    const templateMap = {
+    const templateMap: { [key: string]: string } = {
         headless: 'HeadLess',
         platformer: 'Platformer',
         topdown: 'TopDown'
@@ -83,13 +82,12 @@ async function main() {
     if (args.length === 0) {
         printUsage();
     } else if (args.length === 1) {
-        // Se o único argumento não for um template válido, é o nome do projeto
         if (Object.keys(templateMap).includes(args[0])) {
-             printUsage(); // Ex: 'cafe-new platformer' sem nome de projeto
+             printUsage();
         }
         template = 'headless';
         projectName = args[0];
-    } else { // 2 ou mais argumentos
+    } else {
         template = args[0];
         projectName = args[1];
     }
@@ -99,7 +97,7 @@ async function main() {
         printUsage();
     }
 
-    const projectPath = path.join(process.cwd(), projectName);
+    const projectPath: string = path.join(process.cwd(), projectName);
 
     if (fs.existsSync(projectPath)) {
         console.error(`Erro: O diretório "${projectName}" já existe.`);
@@ -115,7 +113,6 @@ async function main() {
         
         const sourceDir = path.join(projectPath, templateFolder);
         
-        // Espera um pouco para garantir que o git liberou os arquivos
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         if (fs.existsSync(sourceDir)) {
@@ -138,7 +135,7 @@ Projeto "${projectName}" criado com sucesso!`);
 Para começar, acesse a pasta do projeto:
   cd ${projectName}`);
 
-    } catch (error) {
+    } catch (error: any) {
         console.error(`
 Ocorreu um erro durante a criação do projeto: ${error.message}`);
         if (fs.existsSync(projectPath)) {

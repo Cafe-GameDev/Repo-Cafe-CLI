@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const { spawn } = require('child_process');
+import { spawn } from 'child_process';
 
-const HELP_TEXT = `
+const HELP_TEXT: string = `
 ☕ Bem-vindo ao Repo Cafe CLI!
 
    Você está na cafeteria de código do Repo Café. Pegue uma xícara e vamos programar!
@@ -23,26 +23,21 @@ const HELP_TEXT = `
    ----------------------------------------------------------------
 `;
 
-function main() {
-    const args = process.argv.slice(2);
+function main(): void {
+    const args: string[] = process.argv.slice(2);
 
-    // A única exceção: se for um pedido de ajuda, mostramos nosso texto primeiro.
-    const isHelpCommand = args.some(arg => arg.startsWith('--help'));
+    const isHelpCommand: boolean = args.some(arg => arg.startsWith('--help'));
 
     if (isHelpCommand) {
         console.log(HELP_TEXT);
     }
 
-    // Se não houver argumentos, 'gemini' será chamado para iniciar o modo de chat.
-    // Se houver argumentos, eles serão passados diretamente.
     const geminiProcess = spawn('gemini', args, {
         stdio: 'inherit',
-        shell: true // No Windows, é necessário para encontrar executáveis .cmd globais
+        shell: true
     });
 
-    geminiProcess.on('error', (err) => {
-        // Não mostramos o erro para comandos de ajuda, pois o Gemini CLI pode sair com código de erro
-        // em alguns cenários de ajuda que não são erros reais para o usuário.
+    geminiProcess.on('error', (err: Error) => {
         if (!isHelpCommand) {
             console.error('Erro ao tentar executar o comando "gemini".');
             console.error('Por favor, verifique se o @google/gemini-cli está instalado e acessível no seu PATH.');
@@ -51,11 +46,9 @@ function main() {
         }
     });
 
-    geminiProcess.on('exit', (code) => {
-        // O Gemini CLI pode sair com código 1 em alguns casos de --help,
-        // então só consideramos um erro real se não for um comando de ajuda.
+    geminiProcess.on('exit', (code: number | null) => {
         if (code !== 0 && !isHelpCommand) {
-            process.exit(code);
+            process.exit(code ?? 1);
         }
     });
 }
