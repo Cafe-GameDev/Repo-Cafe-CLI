@@ -1,22 +1,22 @@
 {
   "name": "repo-cafe",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "CLI para o ecossistema Repo Café, um assistente de desenvolvimento colaborativo para Godot.",
   "type": "module",
   "main": "dist/repo-cafe.js",
   "bin": {
-    "repo-cafe": "./dist/repo-cafe.js",
-    "cafe-new": "./dist/cafe-new.js",
-    "cafe-rename": "./dist/cafe-rename.js",
-    "repo-cafe-update": "./dist/repo-cafe-update.js",
-    "repo-update": "./dist/repo-update.js"
+    "repo-cafe": "dist/repo-cafe.js",
+    "cafe-new": "dist/cafe-new.js",
+    "cafe-rename": "dist/cafe-rename.js",
+    "repo-cafe-update": "dist/repo-cafe-update.js",
+    "repo-update": "dist/repo-update.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "build": "bun build ./src/repo-cafe.ts ./src/cafe-new.ts ./src/repo-update.ts ./src/cafe-rename.ts ./src/repo-cafe-update.ts --outdir ./dist --target node",
-        "postinstall": "node dist/repo-update.js"
+    "postinstall": "node dist/repo-update.js"
   },
   "repository": {
     "type": "git",
