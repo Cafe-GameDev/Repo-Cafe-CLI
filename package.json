@@ -1,0 +1,48 @@
+{
+  "name": "repo-cafe",
+  "version": "0.0.1",
+  "description": "CLI para o ecossistema Repo Café, um assistente de desenvolvimento colaborativo para Godot.",
+  "type": "module",
+  "main": "dist/repo-cafe.js",
+  "bin": {
+    "repo-cafe": "./dist/repo-cafe.js",
+    "cafe-new": "./dist/cafe-new.js",
+    "cafe-rename": "./dist/cafe-rename.js",
+    "cafe-update": "./dist/cafe-update.js",
+    "repo-update": "./dist/repo-update.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun build ./src/repo-cafe.ts ./src/cafe-new.ts ./src/repo-update.ts ./src/cafe-rename.ts ./src/cafe-update.ts --outdir ./dist --target node",
+    "postinstall": "node dist/repo-update.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cafe-GameDev/Cafe-Gemini.git"
+  },
+  "keywords": [
+    "gemini",
+    "godot",
+    "repo-cafe",
+    "cafe-new",
+    "cli"
+  ],
+  "author": "Cafe-GameDev",
+  "license": "Apache-2.0",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "adm-zip": "^0.5.10"
+  },
+  "peerDependencies": {
+    "@google/gemini-cli": "latest"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.5",
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  }
+}
