@@ -2,18 +2,18 @@
 const { spawn } = require('child_process');
 
 const HELP_TEXT = `
-☕ Bem-vindo ao Café Gemini!
+☕ Bem-vindo ao Repo Cafe CLI!
 
    Você está na cafeteria de código do Repo Café. Pegue uma xícara e vamos programar!
 
    Uso:
-     cafe-gemini [opções-do-gemini] [prompt]
+     repo-cafe [opções-do-gemini] [prompt]
 
    Nosso cardápio de comandos especiais:
 
-   - cafe-new [blend] <nome-do-projeto>: Serve um "Café Quentinho" (cria um projeto Godot a partir dos templates Platformer, TopDown, ou ambos).
+   - cafe-new [blend] <nome-do-projeto>: Serve um "Café Quentinho" (cria um projeto Godot a partir dos templates Platformer, TopDown, ou headless).
    - cafe-rename: Dá uma "mexida" nos nomes de arquivos e pastas, deixando tudo padronizado e com aroma de código limpo.
-   - cafe-gemini-update: Passa um café fresquinho para a ferramenta, atualizando o 'cafe-gemini' para a versão mais recente.
+   - repo-cafe-update: Passa um café fresquinho para a ferramenta, atualizando o 'repo-cafe' para a versão mais recente.
    - repo-update: Quer um "refil" de conhecimento? Atualiza a base de conhecimento (manuais do Repo Café) com as últimas novidades.
 
    Para um mergulho mais fundo em cada comando, use: <comando> --help

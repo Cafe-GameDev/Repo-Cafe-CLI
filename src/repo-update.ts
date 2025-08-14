@@ -79,7 +79,7 @@ async function run() {
     }
 
     console.log(`----------------------------------------------------------------`);
-    console.log(`☕ Configurando o ambiente para o Cafe-Gemini...`);
+    console.log(`☕ Configurando o ambiente para o Repo Cafe CLI...`);
     console.log(`----------------------------------------------------------------`);
 
     // Obter versões antes de qualquer modificação
@@ -145,7 +145,7 @@ ERRO: Falha ao descompactar o conteúdo.`, e);
     
 
     console.log(`----------------------------------------------------------------`);
-    console.log(`✅ Ambiente configurado! O comando 'cafe-gemini' está pronto.`);
+    console.log(`✅ Ambiente configurado! O comando 'repo-cafe' está pronto.`);
     console.log(`----------------------------------------------------------------`);
 }
 

@@ -8,19 +8,19 @@
     "repo-cafe": "./dist/repo-cafe.js",
     "cafe-new": "./dist/cafe-new.js",
     "cafe-rename": "./dist/cafe-rename.js",
-    "cafe-update": "./dist/cafe-update.js",
+    "repo-cafe-update": "./dist/repo-cafe-update.js",
     "repo-update": "./dist/repo-update.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "bun build ./src/repo-cafe.ts ./src/cafe-new.ts ./src/repo-update.ts ./src/cafe-rename.ts ./src/cafe-update.ts --outdir ./dist --target node",
+    "build": "bun build ./src/repo-cafe.ts ./src/cafe-new.ts ./src/repo-update.ts ./src/cafe-rename.ts ./src/repo-cafe-update.ts --outdir ./dist --target node",
     "postinstall": "node dist/repo-update.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cafe-GameDev/Cafe-Gemini.git"
+    "url": "git+https://github.com/Cafe-GameDev/Repo-Cafe-CLI.git"
   },
   "keywords": [
     "gemini",
