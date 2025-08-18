@@ -15,14 +15,14 @@ function printUsage(): void {
 
 Argumentos:
   blend (opcional): O tipo de "grão" para o seu projeto.
-    - 'headless' (Padrão): A base perfeita para qualquer projeto. Inclui todos os sistemas essenciais (menus, save, áudio, etc.) sem mecânicas de jogo.
-    - 'platformer':      Um blend robusto, ideal para jogos de plataforma 2D (inclui a base headless).
-    - 'topdown':         Um blend suave, perfeito para aventuras com visão de cima (inclui a base headless).
+    - 'bodyless' (Padrão): A base perfeita para qualquer projeto. Inclui todos os sistemas essenciais (menus, save, áudio, etc.) sem mecânicas de jogo.
+    - 'platformer':      Um blend robusto, ideal para jogos de plataforma 2D (inclui a base bodyless).
+    - 'topdown':         Um blend suave, perfeito para aventuras com visão de cima (inclui a base bodyless).
 
   nome-do-projeto: O nome para a sua "xícara" (o novo diretório do projeto).
 
 Cardápio de Exemplos:
-  cafe-new meu-novo-jogo                 (cria um projeto a partir do 'headless')
+  cafe-new meu-novo-jogo                 (cria um projeto a partir do 'bodyless')
   cafe-new platformer meu-jogo-plataforma
   cafe-new topdown meu-rpg-descafeinado
     `);
@@ -74,7 +74,7 @@ async function main(): Promise<void> {
     }
 
     const templateMap: { [key: string]: string } = {
-        headless: 'HeadLess',
+        bodyless: 'BodyLess',
         platformer: 'Platformer',
         topdown: 'TopDown'
     };
@@ -85,7 +85,7 @@ async function main(): Promise<void> {
         if (Object.keys(templateMap).includes(args[0])) {
              printUsage();
         }
-        template = 'headless';
+        template = 'bodyless';
         projectName = args[0];
     } else {
         template = args[0];

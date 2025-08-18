@@ -4,7 +4,7 @@
 import { execSync } from "child_process";
 import * as fs from "fs";
 import * as path from "path";
-var __dirname = "C:\\Users\\bruno\\Desktop\\Cafe-Gemini\\src";
+var __dirname = "C:\\Users\\bruno\\Desktop\\CLI\\src";
 var HELP_TEXT = `
 ☕ Uso: repo-cafe-update
 

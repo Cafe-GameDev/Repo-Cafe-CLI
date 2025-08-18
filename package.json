@@ -1,6 +1,6 @@
 {
   "name": "repo-cafe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI para o ecossistema Repo Café, um assistente de desenvolvimento colaborativo para Godot.",
   "type": "module",
   "main": "dist/repo-cafe.js",
