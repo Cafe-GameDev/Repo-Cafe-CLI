@@ -120,7 +120,7 @@ Após a instalação, simplesmente abra um novo terminal e execute:
 repo-cafe
 ```
 
-É só dar um gole e começar a codificar, sentindo a Caféína do desenvolvimento fluir!
+É só dar um gole e começar a codificar, sentindo a Cafeína do desenvolvimento fluir!
 
 ## Recursos Adicionais
 
@@ -128,7 +128,7 @@ repo-cafe
 
 ## Modo de Operação de Conteúdo (NSFW)
 
-Para garantir total liberdade criativa em projetos destinados a um público adulto, o Repo Café CLI possui um modo de operação explícito (NSFW). É a sua dose extra de Caféína para a criatividade sem limites, como um café duplo para as ideias mais ousadas.
+Para garantir total liberdade criativa em projetos destinados a um público adulto, o Repo Café CLI possui um modo de operação explícito (NSFW). É a sua dose extra de Cafeína para a criatividade sem limites, como um café duplo para as ideias mais ousadas.
 
 -   **Modo Padrão (SFW):** Por padrão, o assistente opera com as políticas de segurança de conteúdo do Google, evitando temas sensíveis.
 -   **Modo Explícito (NSFW):** Se um arquivo chamado `NSFW` (sem extensão) for detectado na raiz do seu projeto, as restrições de conteúdo são suspensas. Isso permite que o assistente colabore na criação de diálogos com linguagem explícita, descrições de violência e outros temas maduros, respeitando a visão criativa do seu projeto.
