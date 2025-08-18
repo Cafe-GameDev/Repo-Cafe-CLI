@@ -12,7 +12,7 @@ var HELP_TEXT = `
 
    Nosso cardápio de comandos especiais:
 
-   - cafe-new [blend] <nome-do-projeto>: Serve um "Café Quentinho" (cria um projeto Godot a partir dos templates Platformer, TopDown, ou headless).
+   - cafe-new [blend] <nome-do-projeto>: Serve um "Café Quentinho" (cria um projeto Godot a partir dos templates Platformer, TopDown, ou BodyLess).
    - cafe-rename: Dá uma "mexida" nos nomes de arquivos e pastas, deixando tudo padronizado e com aroma de código limpo.
    - repo-cafe-update: Passa um café fresquinho para a ferramenta, atualizando o 'repo-cafe' para a versão mais recente.
    - repo-update: Quer um "refil" de conhecimento? Atualiza a base de conhecimento (manuais do Repo Café) com as últimas novidades.
